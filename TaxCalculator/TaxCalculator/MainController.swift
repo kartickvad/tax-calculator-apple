@@ -291,7 +291,12 @@ class MainController: UIViewController, UITextFieldDelegate {
   private func ctcForTakeHomePay(_ desiredTakeHome: Double, isEmployee: Bool) -> Double {
     var ctc: Double = 1.0
     while takeHome(ctc, isEmployee: isEmployee) < desiredTakeHome {
-      ctc += 1
+      // If the required CTC is very high, this loop takes a long time, making the app unresponsive.
+      // Fix that by increasing CTC by a thousand rupees each time, or by 1%, whichever is higher.
+      //
+      // The 1% is required for giant numbers, because otherwise it will be linear time -- if the
+      // user appends a zero, making the number ten times bigger, it will take ten times longer.
+      ctc = max(ctc + 1000, ctc * 1.01)
     }
     return ctc
   }
