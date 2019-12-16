@@ -11,7 +11,7 @@ import UIKit
 class MainController: UIViewController, UITextFieldDelegate {
 
   var PF_RATE: Double = 0.0
-  var PROFEESIONAL_TAX: Double = 2.5
+  var PROFESSIONAL_TAX: Double = 2500
   var PRESUMPTIVE_RATE: Double = 0.5
   var EMPLOYEE_TAX_DEDUCTION: Double = 16000
   var GST_RATE: Double = 0
@@ -169,7 +169,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   }
 
   private func incomeAndProfessionalTaxFor(_ income: Double) -> Double {
-    return incomeTaxFor(income) + PROFEESIONAL_TAX
+    return incomeTaxFor(income) + PROFESSIONAL_TAX
   }
 
   private func totalTaxFor(_ income: Double, isEmployee: Bool) -> Double {
