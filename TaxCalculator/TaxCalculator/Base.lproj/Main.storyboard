@@ -28,7 +28,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="35"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take-home pay (monthly)" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ijw-lu-SsD">
-                                                <rect key="frame" x="0.0" y="0.0" width="247" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="217" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="cYc-ft-vxR"/>
                                                 </constraints>
@@ -37,7 +37,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="XM2-nG-exT">
-                                                <rect key="frame" x="267" y="0.0" width="107" height="35"/>
+                                                <rect key="frame" x="237" y="0.0" width="137" height="35"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₹" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHd-bO-9Vl">
                                                         <rect key="frame" x="0.0" y="0.0" width="15" height="35"/>
@@ -49,9 +49,9 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NDp-Ot-kCt">
-                                                        <rect key="frame" x="17" y="0.0" width="90" height="35"/>
+                                                        <rect key="frame" x="17" y="0.0" width="120" height="35"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="90" id="GIE-u8-KXN"/>
+                                                            <constraint firstAttribute="width" constant="120" id="GIE-u8-KXN"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -73,13 +73,13 @@
                                         <rect key="frame" x="0.0" y="65" width="374" height="35"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CTC for employee" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgj-iJ-5Ld">
-                                                <rect key="frame" x="0.0" y="9" width="247" height="17.5"/>
+                                                <rect key="frame" x="0.0" y="9" width="217" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="F5o-rD-CLu">
-                                                <rect key="frame" x="267" y="0.5" width="107" height="34"/>
+                                                <rect key="frame" x="237" y="0.5" width="137" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₹" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jF-fD-Yzu">
                                                         <rect key="frame" x="0.0" y="0.0" width="15" height="34"/>
@@ -91,9 +91,9 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xhR-fJ-ORi">
-                                                        <rect key="frame" x="17" y="0.0" width="90" height="34"/>
+                                                        <rect key="frame" x="17" y="0.0" width="120" height="34"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="90" id="t7X-RC-HE6"/>
+                                                            <constraint firstAttribute="width" constant="120" id="t7X-RC-HE6"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad" enablesReturnKeyAutomatically="YES"/>
