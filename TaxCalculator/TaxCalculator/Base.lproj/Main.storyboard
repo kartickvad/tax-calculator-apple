@@ -52,6 +52,7 @@
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 <connections>
                                                     <action selector="professionalTaxValueChanged:" destination="DId-15-aJ9" eventType="editingChanged" id="IvD-XR-axE"/>
+                                                    <outlet property="delegate" destination="DId-15-aJ9" id="x10-jl-qn4"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -78,6 +79,7 @@
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 <connections>
                                                     <action selector="pfRateChanged:" destination="DId-15-aJ9" eventType="editingChanged" id="yCv-L2-eIp"/>
+                                                    <outlet property="delegate" destination="DId-15-aJ9" id="Lw0-DT-nQt"/>
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neB-Eg-QxH">
@@ -115,6 +117,7 @@
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 <connections>
                                                     <action selector="presumtiveTaxationRateChanged:" destination="DId-15-aJ9" eventType="editingChanged" id="9XK-ne-215"/>
+                                                    <outlet property="delegate" destination="DId-15-aJ9" id="vDd-be-h1W"/>
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kh8-Yd-Zaa">
@@ -152,6 +155,7 @@
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 <connections>
                                                     <action selector="gstRateChanged:" destination="DId-15-aJ9" eventType="editingChanged" id="eIX-AV-kte"/>
+                                                    <outlet property="delegate" destination="DId-15-aJ9" id="dVo-01-rK1"/>
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UL5-5T-kCC">
@@ -211,6 +215,7 @@
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 <connections>
                                                     <action selector="takeHomePayChanged:" destination="DId-15-aJ9" eventType="editingChanged" id="sWh-0b-XN7"/>
+                                                    <outlet property="delegate" destination="DId-15-aJ9" id="IuB-fw-k6H"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -248,6 +253,7 @@
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
                                                 <connections>
                                                     <action selector="ctcForEmployeeChanged:" destination="DId-15-aJ9" eventType="editingChanged" id="nrk-xK-dL3"/>
+                                                    <outlet property="delegate" destination="DId-15-aJ9" id="h6p-ef-6Wi"/>
                                                 </connections>
                                             </textField>
                                         </subviews>

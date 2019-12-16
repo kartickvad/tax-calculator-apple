@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainController: UIViewController {
+class MainController: UIViewController, UITextFieldDelegate {
 
   var PF_RATE: Double = 0.0
   var PROFEESIONAL_TAX: Double = 2.5
@@ -148,9 +148,14 @@ class MainController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
+
     calcTakeHomeFor(lac(10))
     calcCtcForTakeHome(50)
+  }
+
+  // Called when the user clicks on the view outside the UITextField.
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
   }
 
 
