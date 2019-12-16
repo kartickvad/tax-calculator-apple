@@ -13,16 +13,98 @@ class MainController: UIViewController, UITextFieldDelegate {
   var PF_RATE: Double = 0.0
   var PROFEESIONAL_TAX: Double = 2.5
   var PRESUMPTIVE_RATE: Double = 0.5
-  var EMPLOYEE_TAX_DEDUCTION: Double = 160
+  var EMPLOYEE_TAX_DEDUCTION: Double = 16000
   var GST_RATE: Double = 0
-  var SLAB_1: Double = 250
-  var SLAB_2: Double =  500
-  var SLAB_3: Double = 1000
+  var SLAB_1: Double = 250000
+  var SLAB_2: Double =  500000
+  var SLAB_3: Double = 1000000
 
 
-  private func lac(_ amount: Double) -> Double {
-    return amount * 100
+
+
+  // MARK:- Lifecycle
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    // Do any additional setup after loading the view.
+    print(calcCtcForTakeHome(50000))
+    print(calcTakeHomeFor(1000000))
   }
+
+
+
+
+  // MARK:- Outlets
+
+  @IBOutlet private weak var takeHomePayTextfield: UITextField!
+  @IBOutlet private weak var ctcForEmployeeTextField: UITextField!
+  @IBOutlet private weak var professionalTaxTextfield: UITextField!
+  @IBOutlet private weak var pfRateTextField: UITextField!
+  @IBOutlet private weak var presumtiveTaxationRateTextField: UITextField!
+  @IBOutlet private weak var gstRateTextField: UITextField!
+  @IBOutlet private weak var isEmployeeSegmentedControl: UISegmentedControl!
+
+
+
+
+  // MARK:- IBActions
+
+  @IBAction private func takeHomePayChanged(_ sender: UITextField) {
+
+    guard var takeHomePay = Double(takeHomePayTextfield.text!) else {
+      ctcForEmployeeTextField.text = "0.0"
+      return
+    }
+
+//    takeHomePay /= 100
+
+    ctcForEmployeeTextField.text = calcCtcForTakeHome(takeHomePay).toCurrency()
+
+
+  }
+
+  @IBAction private func ctcForEmployeeChanged(_ sender: UITextField) {
+    // TODO: Calculate
+
+    guard var ctc = Double(ctcForEmployeeTextField.text!) else {
+      takeHomePayTextfield.text = "0"
+      return
+    }
+
+//    ctc /= 100
+
+    takeHomePayTextfield.text = calcTakeHomeFor(ctc).toCurrency()
+  }
+
+  @IBAction private func professionalTaxValueChanged(_ sender: UITextField) {
+    // TODO: Calculate
+  }
+
+  @IBAction private func pfRateChanged(_ sender: UITextField) {
+    // TODO: Calculate
+  }
+
+  @IBAction private func presumtiveTaxationRateChanged(_ sender: UITextField) {
+    // TODO: Calculate
+  }
+
+  @IBAction private func gstRateChanged(_ sender: UITextField) {
+    // TODO: Calculate
+  }
+
+
+
+
+  // MARK:- Private
+
+
+  private var isEmployee: Bool {
+    return isEmployeeSegmentedControl.selectedSegmentIndex == 0
+  }
+
+//  private func lac(_ amount: Double) -> Double {
+//    return amount * 100
+//  }
 
   private func incomeTaxSlab1(_ income: Double) -> Double {
     var calculatedIncome = income
@@ -61,17 +143,17 @@ class MainController: UIViewController, UITextFieldDelegate {
   }
 
   private func incomeTaxFor(_ income: Double) -> Double {
-    if income <= 500 {
+    if income <= 500000 { // 5L
       return 0.0
     }
 
     let tax = incomeTaxSlab1(income) + incomeTaxSlab2(income) + incomeTaxSlab3(income)
     let cess = tax * 0.04 // Health and education cess is 4% of the tax
     var surcharge: Double = 0.0
-    if income >=  lac(100) {
+    if income >=  10000000 { // 100L
       print("Warning: ignoring surcharge for high income")
     }
-    if income >=  lac(50) {
+    if income >=  5000000 { // 50L
       surcharge = tax * 0.1
     }
     return tax + cess + surcharge
@@ -98,7 +180,7 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   private func pfFor(_ income: Double) -> Double {
     // To calculate PF, your salary is capped at 15k
-    return min(income, 15) * PF_RATE
+    return min(income, 15000) * PF_RATE
   }
 
   private func takeHome(_ income: Double, isEmployee: Bool) -> Double {
@@ -110,20 +192,8 @@ class MainController: UIViewController, UITextFieldDelegate {
     return floor(calculatedIncome / 12)
   }
 
-  private func formatMoney(_ amount: Double) -> String {
-    var calculatedAmount = amount
-    if amount >= 100 {
-      calculatedAmount /= 100
-      return "\(calculatedAmount) lac"
-    }
-    return "\(calculatedAmount)K"
-  }
-
-  private func calcTakeHomeFor(_ income: Double) {
-    let takeHomeEmployee = takeHome(income, isEmployee: true)
-    let takeHomeConsultant = takeHome(income, isEmployee: false)
-
-    print("\(takeHomeEmployee), \(takeHomeConsultant)")
+  private func calcTakeHomeFor(_ income: Double) -> Double {
+    return takeHome(income, isEmployee: isEmployee)
   }
 
   private func ctcForTakeHomePay(_ desiredTakeHome: Double, isEmployee: Bool) -> Double {
@@ -134,84 +204,9 @@ class MainController: UIViewController, UITextFieldDelegate {
     return ctc
   }
 
-  private func calcCtcForTakeHome(_ desiredTakeHome: Double) {
-    let ctcEmployee = formatMoney(ctcForTakeHomePay(desiredTakeHome, isEmployee: true))
-    let ctcConsultant = formatMoney(ctcForTakeHomePay(desiredTakeHome, isEmployee: false))
-
-    print("\(ctcEmployee), \(ctcConsultant)")
+  private func calcCtcForTakeHome(_ desiredTakeHome: Double) -> Double {
+    return ctcForTakeHomePay(desiredTakeHome, isEmployee: isEmployee)
   }
 
-
-
-
-  // MARK:- Lifecycle
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    calcTakeHomeFor(lac(10))
-    calcCtcForTakeHome(50)
-  }
-
-  // Called when the user clicks on the view outside the UITextField.
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    self.view.endEditing(true)
-  }
-
-  override var prefersStatusBarHidden: Bool {
-    return true
-  }
-
-
-
-
-  // MARK:- Outlets
-
-  @IBOutlet private weak var takeHomePayTextfield: UITextField!
-  @IBOutlet private weak var ctcForEmployeeTextField: UITextField!
-  @IBOutlet private weak var professionalTaxTextfield: UITextField!
-  @IBOutlet private weak var pfRateTextField: UITextField!
-  @IBOutlet private weak var presumtiveTaxationRateTextField: UITextField!
-  @IBOutlet private weak var gstRateTextField: UITextField!
-  @IBOutlet private weak var isEmployeeSegmentedControl: UISegmentedControl!
-
-
-
-
-  // MARK:- IBActions
-
-  @IBAction private func takeHomePayChanged(_ sender: UITextField) {
-    let userEnterdText = Int(takeHomePayTextfield.text!)
-    // TODO: Calculate
-  }
-
-  @IBAction private func ctcForEmployeeChanged(_ sender: UITextField) {
-    // TODO: Calculate
-  }
-
-  @IBAction private func professionalTaxValueChanged(_ sender: UITextField) {
-    // TODO: Calculate
-  }
-
-  @IBAction private func pfRateChanged(_ sender: UITextField) {
-    // TODO: Calculate
-  }
-
-  @IBAction private func presumtiveTaxationRateChanged(_ sender: UITextField) {
-    // TODO: Calculate
-  }
-
-  @IBAction private func gstRateChanged(_ sender: UITextField) {
-    // TODO: Calculate
-  }
-
-
-
-
-  // MARK:- Private
-
-  private var isEmployee: Bool {
-    return isEmployeeSegmentedControl.selectedSegmentIndex == 1
-  }
 }
 

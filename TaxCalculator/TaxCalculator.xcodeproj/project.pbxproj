@@ -12,6 +12,7 @@
 		864EA4F723A76D4E0000EEB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 864EA4F523A76D4E0000EEB3 /* Main.storyboard */; };
 		864EA4F923A76D500000EEB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 864EA4F823A76D500000EEB3 /* Assets.xcassets */; };
 		864EA4FC23A76D500000EEB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 864EA4FA23A76D500000EEB3 /* LaunchScreen.storyboard */; };
+		867A6BC223A792100018CB7B /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867A6BC123A792100018CB7B /* Double+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		864EA4F823A76D500000EEB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		864EA4FB23A76D500000EEB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		864EA4FD23A76D500000EEB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		867A6BC123A792100018CB7B /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +58,21 @@
 			children = (
 				864EA4EF23A76D4E0000EEB3 /* AppDelegate.swift */,
 				864EA4F323A76D4E0000EEB3 /* MainController.swift */,
+				867A6BC023A791F00018CB7B /* Extensions */,
 				864EA4F523A76D4E0000EEB3 /* Main.storyboard */,
 				864EA4F823A76D500000EEB3 /* Assets.xcassets */,
 				864EA4FA23A76D500000EEB3 /* LaunchScreen.storyboard */,
 				864EA4FD23A76D500000EEB3 /* Info.plist */,
 			);
 			path = TaxCalculator;
+			sourceTree = "<group>";
+		};
+		867A6BC023A791F00018CB7B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				867A6BC123A792100018CB7B /* Double+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				867A6BC223A792100018CB7B /* Double+Extensions.swift in Sources */,
 				864EA4F423A76D4E0000EEB3 /* MainController.swift in Sources */,
 				864EA4F023A76D4E0000EEB3 /* AppDelegate.swift in Sources */,
 			);
