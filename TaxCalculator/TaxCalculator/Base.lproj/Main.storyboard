@@ -67,8 +67,8 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1DB-zI-f5r">
                                         <rect key="frame" x="0.0" y="65" width="374" height="35"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CTC for employee / Gross income for consultant" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgj-iJ-5Ld">
-                                                <rect key="frame" x="0.0" y="0.0" width="247" height="35"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CTC for employee" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pgj-iJ-5Ld">
+                                                <rect key="frame" x="0.0" y="9" width="247" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -295,6 +295,9 @@
                                     <segment title="Employee"/>
                                     <segment title="Consultant"/>
                                 </segments>
+                                <connections>
+                                    <action selector="employeeOrConsultantSegmentChanged:" destination="DId-15-aJ9" eventType="valueChanged" id="vX7-EU-VTb"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -312,6 +315,7 @@
                         <viewLayoutGuide key="safeArea" id="5a5-70-Ngg"/>
                     </view>
                     <connections>
+                        <outlet property="ctcForEmployeeLabel" destination="pgj-iJ-5Ld" id="fn2-eW-KI9"/>
                         <outlet property="ctcForEmployeeTextField" destination="xhR-fJ-ORi" id="lCM-UC-eGI"/>
                         <outlet property="gstRateTextField" destination="ohD-Z1-NuV" id="8qe-Ha-4fP"/>
                         <outlet property="isEmployeeSegmentedControl" destination="9jo-1M-M9m" id="rFq-p6-CB8"/>

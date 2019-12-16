@@ -26,7 +26,7 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
+
     print(calcCtcForTakeHome(50000))
     print(calcTakeHomeFor(1000000))
   }
@@ -47,6 +47,7 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   @IBOutlet private weak var takeHomePayTextfield: UITextField!
   @IBOutlet private weak var ctcForEmployeeTextField: UITextField!
+  @IBOutlet weak var ctcForEmployeeLabel: UILabel!
   @IBOutlet private weak var professionalTaxTextfield: UITextField!
   @IBOutlet private weak var pfRateTextField: UITextField!
   @IBOutlet private weak var presumtiveTaxationRateTextField: UITextField!
@@ -101,6 +102,16 @@ class MainController: UIViewController, UITextFieldDelegate {
     // TODO: Calculate
   }
 
+  @IBAction func employeeOrConsultantSegmentChanged(_ sender: UISegmentedControl) {
+    switch sender.selectedSegmentIndex {
+    case 0:
+      ctcForEmployeeLabel.text = "CTC for employee"
+    case 1:
+      ctcForEmployeeLabel.text = "Gross income for consultant"
+    default:
+      break
+    }
+  }
 
 
 
