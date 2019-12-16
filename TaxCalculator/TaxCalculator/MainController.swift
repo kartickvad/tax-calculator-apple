@@ -61,28 +61,21 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   @IBAction private func takeHomePayChanged(_ sender: UITextField) {
 
-    guard var takeHomePay = Double(takeHomePayTextfield.text!) else {
+    guard var takeHomePay = Double(sender.text!) else {
       ctcForEmployeeTextField.text = "0.0"
       return
     }
-
-//    takeHomePay /= 100
+    isTakeHomeEntered = true
 
     ctcForEmployeeTextField.text = calcCtcForTakeHome(takeHomePay).toCurrency()
-
-
   }
 
   @IBAction private func ctcForEmployeeChanged(_ sender: UITextField) {
-    // TODO: Calculate
-
-    guard var ctc = Double(ctcForEmployeeTextField.text!) else {
+    guard var ctc = Double(sender.text!) else {
       takeHomePayTextfield.text = "0"
       return
     }
-
-//    ctc /= 100
-
+    isTakeHomeEntered = false
     takeHomePayTextfield.text = calcTakeHomeFor(ctc).toCurrency()
   }
 
@@ -111,11 +104,19 @@ class MainController: UIViewController, UITextFieldDelegate {
     default:
       break
     }
+    
+    if isTakeHomeEntered {
+      takeHomePayChanged(takeHomePayTextfield)
+    } else {
+      ctcForEmployeeChanged(ctcForEmployeeTextField)
+    }
   }
 
 
 
   // MARK:- Private
+
+  private var isTakeHomeEntered = false
 
 
   private var isEmployee: Bool {
