@@ -30,9 +30,6 @@ class MainController: UIViewController, UITextFieldDelegate {
     togglePfRate()
     togglePresumptiveRate()
     toggleGstRate()
-
-    print(calcCtcForTakeHome(50000))
-    print(calcTakeHomeFor(1000000))
   }
 
   // Called when the user clicks on the view outside the UITextField.
@@ -85,8 +82,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   // MARK:- IBActions
 
   @IBAction private func takeHomePayChanged(_ sender: UITextField) {
-
-    guard var takeHomePay = Double(sender.text!) else {
+    guard let takeHomePay = Double(sender.text!) else {
       ctcForEmployeeTextField.text = "0.0"
       return
     }
@@ -96,7 +92,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   }
 
   @IBAction private func ctcForEmployeeChanged(_ sender: UITextField) {
-    guard var ctc = Double(sender.text!) else {
+    guard let ctc = Double(sender.text!) else {
       takeHomePayTextfield.text = "0"
       return
     }
@@ -159,7 +155,6 @@ class MainController: UIViewController, UITextFieldDelegate {
   private var isTakeHomeEnteredLast = false
 
   private func updateTakeHomeOrCtc() {
-
     if isTakeHomeEnteredLast {
       takeHomePayChanged(takeHomePayTextfield)
     } else {
@@ -201,10 +196,6 @@ class MainController: UIViewController, UITextFieldDelegate {
   private var isEmployee: Bool {
     return isEmployeeSegmentedControl.selectedSegmentIndex == 0
   }
-
-//  private func lac(_ amount: Double) -> Double {
-//    return amount * 100
-//  }
 
   private func incomeTaxSlab1(_ income: Double) -> Double {
     var calculatedIncome = income
