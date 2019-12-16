@@ -272,6 +272,7 @@
                     <connections>
                         <outlet property="ctcForEmployeeTextField" destination="xhR-fJ-ORi" id="lCM-UC-eGI"/>
                         <outlet property="gstRateTextField" destination="ohD-Z1-NuV" id="8qe-Ha-4fP"/>
+                        <outlet property="isEmployeeSegmentedControl" destination="9jo-1M-M9m" id="rFq-p6-CB8"/>
                         <outlet property="pfRateTextField" destination="QRs-ql-QCA" id="Hak-tx-EuS"/>
                         <outlet property="presumtiveTaxationRateTextField" destination="IHD-9l-iKB" id="L0u-wO-eXb"/>
                         <outlet property="professionalTaxTextfield" destination="3aN-cT-pf7" id="Oqf-ar-SxL"/>

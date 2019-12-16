@@ -164,6 +164,7 @@ class MainController: UIViewController {
   @IBOutlet private weak var pfRateTextField: UITextField!
   @IBOutlet private weak var presumtiveTaxationRateTextField: UITextField!
   @IBOutlet private weak var gstRateTextField: UITextField!
+  @IBOutlet private weak var isEmployeeSegmentedControl: UISegmentedControl!
 
 
 
@@ -193,6 +194,15 @@ class MainController: UIViewController {
 
   @IBAction private func gstRateChanged(_ sender: UITextField) {
     // TODO: Calculate
+  }
+
+
+
+
+  // MARK:- Private
+
+  private var isEmployee: Bool {
+    return isEmployeeSegmentedControl.selectedSegmentIndex == 1
   }
 }
 
