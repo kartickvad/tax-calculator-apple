@@ -31,6 +31,15 @@ class MainController: UIViewController, UITextFieldDelegate {
     print(calcTakeHomeFor(1000000))
   }
 
+  // Called when the user clicks on the view outside the UITextField.
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
+  }
+
+  override var prefersStatusBarHidden: Bool {
+    return true
+  }
+
 
 
 
