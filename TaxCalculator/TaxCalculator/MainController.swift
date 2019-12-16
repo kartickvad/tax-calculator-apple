@@ -30,6 +30,15 @@ class MainController: UIViewController, UITextFieldDelegate {
     togglePfRate()
     togglePresumptiveRate()
     toggleGstRate()
+
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(keyboardWillShow),
+                                           name: UIResponder.keyboardWillShowNotification,
+                                           object: nil)
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(keyboardWillHide),
+                                           name: UIResponder.keyboardWillHideNotification,
+                                           object: nil)
   }
 
   // Called when the user clicks on the view outside the UITextField.
@@ -39,6 +48,14 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   override var prefersStatusBarHidden: Bool {
     return true
+  }
+
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    activeField = textField
+  }
+
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    activeField = nil
   }
 
 
@@ -69,14 +86,13 @@ class MainController: UIViewController, UITextFieldDelegate {
     }
   }
 
-  @IBOutlet weak var ctcForEmployeeLabel: UILabel!
-  @IBOutlet weak var pfRateLabel: UILabel!
-  @IBOutlet weak var presumptiveRateLabel: UILabel!
-  @IBOutlet weak var gstRateLabel: UILabel!
-
+  @IBOutlet private weak var ctcForEmployeeLabel: UILabel!
+  @IBOutlet private weak var pfRateLabel: UILabel!
+  @IBOutlet private weak var presumptiveRateLabel: UILabel!
+  @IBOutlet private weak var gstRateLabel: UILabel!
   @IBOutlet private weak var isEmployeeSegmentedControl: UISegmentedControl!
 
-  @IBOutlet weak var optionsScrollView: UIScrollView!
+  @IBOutlet private weak var optionsScrollView: UIScrollView!
   
 
 
@@ -133,7 +149,7 @@ class MainController: UIViewController, UITextFieldDelegate {
     updateTakeHomeOrCtc()
   }
 
-  @IBAction func employeeOrConsultantSegmentChanged(_ sender: UISegmentedControl) {
+  @IBAction private func employeeOrConsultantSegmentChanged(_ sender: UISegmentedControl) {
     switch sender.selectedSegmentIndex {
     case 0:
       ctcForEmployeeLabel.text = "CTC for employee"
@@ -154,6 +170,36 @@ class MainController: UIViewController, UITextFieldDelegate {
   // MARK:- Private
 
   private var isTakeHomeEnteredLast = false
+  private var activeField: UITextField?
+
+  @objc private func keyboardWillShow(notification: NSNotification) {
+    let userInfo = notification.userInfo!
+    self.optionsScrollView.isScrollEnabled = true
+    let keyboardSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+    let contentInsets : UIEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize!.height + 50, right: 0.0)
+
+    self.optionsScrollView.contentInset = contentInsets
+    self.optionsScrollView.scrollIndicatorInsets = contentInsets
+
+    var aRect : CGRect = self.view.frame
+    aRect.size.height -= keyboardSize!.height
+    if activeField != nil {
+      if (!aRect.contains(activeField!.frame.origin)) {
+        self.optionsScrollView.scrollRectToVisible(activeField!.frame, animated: true)
+      }
+    }
+  }
+
+
+  @objc private func keyboardWillHide(notification: NSNotification) {
+    let userInfo = notification.userInfo!
+    let keyboardSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+    let contentInsets : UIEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: -keyboardSize!.height, right: 0.0)
+    self.optionsScrollView.contentInset = contentInsets
+    self.optionsScrollView.scrollIndicatorInsets = contentInsets
+    self.view.endEditing(true)
+    self.optionsScrollView.isScrollEnabled = false
+  }
 
   private func updateTakeHomeOrCtc() {
     if isTakeHomeEnteredLast {
@@ -304,6 +350,5 @@ class MainController: UIViewController, UITextFieldDelegate {
   private func calcCtcForTakeHome(_ desiredTakeHome: Double) -> Double {
     return ctcForTakeHomePay(desiredTakeHome, isEmployee: isEmployee)
   }
-
 }
 
