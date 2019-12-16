@@ -158,6 +158,10 @@ class MainController: UIViewController, UITextFieldDelegate {
     self.view.endEditing(true)
   }
 
+  override var prefersStatusBarHidden: Bool {
+    return true
+  }
+
 
 
 
