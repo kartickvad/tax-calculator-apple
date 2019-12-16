@@ -27,6 +27,8 @@ class MainController: UIViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    overrideUserInterfaceStyle = .light
+
     togglePfRate()
     togglePresumptiveRate()
     toggleGstRate()
