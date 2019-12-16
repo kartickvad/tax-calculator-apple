@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		864EA4F023A76D4E0000EEB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864EA4EF23A76D4E0000EEB3 /* AppDelegate.swift */; };
-		864EA4F223A76D4E0000EEB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864EA4F123A76D4E0000EEB3 /* SceneDelegate.swift */; };
 		864EA4F423A76D4E0000EEB3 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864EA4F323A76D4E0000EEB3 /* MainController.swift */; };
 		864EA4F723A76D4E0000EEB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 864EA4F523A76D4E0000EEB3 /* Main.storyboard */; };
 		864EA4F923A76D500000EEB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 864EA4F823A76D500000EEB3 /* Assets.xcassets */; };
@@ -18,7 +17,6 @@
 /* Begin PBXFileReference section */
 		864EA4EC23A76D4E0000EEB3 /* TaxCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		864EA4EF23A76D4E0000EEB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		864EA4F123A76D4E0000EEB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		864EA4F323A76D4E0000EEB3 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		864EA4F623A76D4E0000EEB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		864EA4F823A76D500000EEB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,7 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				864EA4EF23A76D4E0000EEB3 /* AppDelegate.swift */,
-				864EA4F123A76D4E0000EEB3 /* SceneDelegate.swift */,
 				864EA4F323A76D4E0000EEB3 /* MainController.swift */,
 				864EA4F523A76D4E0000EEB3 /* Main.storyboard */,
 				864EA4F823A76D500000EEB3 /* Assets.xcassets */,
@@ -140,7 +137,6 @@
 			files = (
 				864EA4F423A76D4E0000EEB3 /* MainController.swift in Sources */,
 				864EA4F023A76D4E0000EEB3 /* AppDelegate.swift in Sources */,
-				864EA4F223A76D4E0000EEB3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +283,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E6SASKAT7G;
 				INFOPLIST_FILE = TaxCalculator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -294,7 +291,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kartickv.TaxCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -305,6 +302,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E6SASKAT7G;
 				INFOPLIST_FILE = TaxCalculator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,7 +310,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kartickv.TaxCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
