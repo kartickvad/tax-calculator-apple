@@ -76,7 +76,8 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   @IBOutlet private weak var isEmployeeSegmentedControl: UISegmentedControl!
 
-
+  @IBOutlet weak var optionsScrollView: UIScrollView!
+  
 
 
   // MARK:- IBActions
