@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DId-15-aJ9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,7 +11,7 @@
         <!--Main-->
         <scene sceneID="n4W-9L-81n">
             <objects>
-                <viewController id="DId-15-aJ9" userLabel="Main" customClass="MainController" customModule="TaxCalculator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DId-15-aJ9" userLabel="Main" customClass="MainController" customModule="Tax_Calculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b1u-Hc-yAO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,6 +28,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="takeHomePayChanged:" destination="DId-15-aJ9" eventType="editingChanged" id="sWh-0b-XN7"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GST rate (only for consultants)" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwa-Fh-WzJ">
                                 <rect key="frame" x="16" y="610" width="140" height="35"/>
@@ -47,6 +51,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="gstRateChanged:" destination="DId-15-aJ9" eventType="editingChanged" id="eIX-AV-kte"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Presumptive taxation rate  (only for consultants)" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtb-so-dbI">
                                 <rect key="frame" x="16" y="556" width="176" height="35"/>
@@ -60,6 +67,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="presumtiveTaxationRateChanged:" destination="DId-15-aJ9" eventType="editingChanged" id="9XK-ne-215"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="%" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kh8-Yd-Zaa">
                                 <rect key="frame" x="344" y="566" width="15" height="17"/>
@@ -80,6 +90,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="professionalTaxValueChanged:" destination="DId-15-aJ9" eventType="editingChanged" id="IvD-XR-axE"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="₹" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BjW-Xg-7UM">
                                 <rect key="frame" x="257" y="439" width="8" height="18"/>
@@ -100,6 +113,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="pfRateChanged:" destination="DId-15-aJ9" eventType="editingChanged" id="yCv-L2-eIp"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="%" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neB-Eg-QxH">
                                 <rect key="frame" x="343" y="505" width="15" height="17"/>
@@ -121,6 +137,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="ctcForEmployeeChanged:" destination="DId-15-aJ9" eventType="editingChanged" id="nrk-xK-dL3"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="₹" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jF-fD-Yzu">
                                 <rect key="frame" x="245" y="146" width="8" height="18"/>
@@ -147,6 +166,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="5a5-70-Ngg"/>
                     </view>
+                    <connections>
+                        <outlet property="ctcForEmployeeTextField" destination="xhR-fJ-ORi" id="lCM-UC-eGI"/>
+                        <outlet property="gstRateTextField" destination="ohD-Z1-NuV" id="8qe-Ha-4fP"/>
+                        <outlet property="pfRateTextField" destination="QRs-ql-QCA" id="Hak-tx-EuS"/>
+                        <outlet property="presumtiveTaxationRateTextField" destination="IHD-9l-iKB" id="L0u-wO-eXb"/>
+                        <outlet property="professionalTaxTextfield" destination="3aN-cT-pf7" id="Oqf-ar-SxL"/>
+                        <outlet property="takeHomePayTextfield" destination="NDp-Ot-kCt" id="AyZ-a7-Tyn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pWS-yQ-phN" sceneMemberID="firstResponder"/>
             </objects>
