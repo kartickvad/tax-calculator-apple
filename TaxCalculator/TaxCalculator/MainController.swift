@@ -48,10 +48,26 @@ class MainController: UIViewController, UITextFieldDelegate {
   @IBOutlet private weak var takeHomePayTextfield: UITextField!
   @IBOutlet private weak var ctcForEmployeeTextField: UITextField!
   @IBOutlet weak var ctcForEmployeeLabel: UILabel!
-  @IBOutlet private weak var professionalTaxTextfield: UITextField!
-  @IBOutlet private weak var pfRateTextField: UITextField!
-  @IBOutlet private weak var presumtiveTaxationRateTextField: UITextField!
-  @IBOutlet private weak var gstRateTextField: UITextField!
+  @IBOutlet private weak var professionalTaxTextfield: UITextField! {
+    didSet {
+      professionalTaxTextfield.text = String(PROFESSIONAL_TAX)
+    }
+  }
+  @IBOutlet private weak var pfRateTextField: UITextField! {
+    didSet {
+      pfRateTextField.text = String(PF_RATE)
+    }
+  }
+  @IBOutlet private weak var presumtiveTaxationRateTextField: UITextField! {
+    didSet {
+      presumtiveTaxationRateTextField.text = String(PRESUMPTIVE_RATE)
+    }
+  }
+  @IBOutlet private weak var gstRateTextField: UITextField! {
+    didSet {
+      gstRateTextField.text = String(GST_RATE)
+    }
+  }
   @IBOutlet private weak var isEmployeeSegmentedControl: UISegmentedControl!
 
 
@@ -65,7 +81,7 @@ class MainController: UIViewController, UITextFieldDelegate {
       ctcForEmployeeTextField.text = "0.0"
       return
     }
-    isTakeHomeEntered = true
+    isTakeHomeEnteredLast = true
 
     ctcForEmployeeTextField.text = calcCtcForTakeHome(takeHomePay).toCurrency()
   }
@@ -75,24 +91,40 @@ class MainController: UIViewController, UITextFieldDelegate {
       takeHomePayTextfield.text = "0"
       return
     }
-    isTakeHomeEntered = false
+    isTakeHomeEnteredLast = false
     takeHomePayTextfield.text = calcTakeHomeFor(ctc).toCurrency()
   }
 
   @IBAction private func professionalTaxValueChanged(_ sender: UITextField) {
-    // TODO: Calculate
+    guard let tax = Double(sender.text!) else {
+      return
+    }
+    PROFESSIONAL_TAX = tax
+    updateTakeHomeOrCtc()
   }
 
   @IBAction private func pfRateChanged(_ sender: UITextField) {
-    // TODO: Calculate
+    guard let rate = Double(sender.text!) else {
+      return
+    }
+    PF_RATE = rate/100
+    updateTakeHomeOrCtc()
   }
 
   @IBAction private func presumtiveTaxationRateChanged(_ sender: UITextField) {
-    // TODO: Calculate
+    guard let rate = Double(sender.text!) else {
+      return
+    }
+    PRESUMPTIVE_RATE = rate/100
+    updateTakeHomeOrCtc()
   }
 
   @IBAction private func gstRateChanged(_ sender: UITextField) {
-    // TODO: Calculate
+    guard let gst = Double(sender.text!) else {
+      return
+    }
+    GST_RATE = gst/100
+    updateTakeHomeOrCtc()
   }
 
   @IBAction func employeeOrConsultantSegmentChanged(_ sender: UISegmentedControl) {
@@ -104,19 +136,24 @@ class MainController: UIViewController, UITextFieldDelegate {
     default:
       break
     }
-    
-    if isTakeHomeEntered {
-      takeHomePayChanged(takeHomePayTextfield)
-    } else {
-      ctcForEmployeeChanged(ctcForEmployeeTextField)
-    }
+    updateTakeHomeOrCtc()
+
   }
 
 
 
   // MARK:- Private
 
-  private var isTakeHomeEntered = false
+  private var isTakeHomeEnteredLast = false
+
+  private func updateTakeHomeOrCtc() {
+
+    if isTakeHomeEnteredLast {
+      takeHomePayChanged(takeHomePayTextfield)
+    } else {
+      ctcForEmployeeChanged(ctcForEmployeeTextField)
+    }
+  }
 
 
   private var isEmployee: Bool {
