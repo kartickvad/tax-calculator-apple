@@ -110,11 +110,35 @@ class MainController: UIViewController {
     return floor(calculatedIncome / 12)
   }
 
+  private func formatMoney(_ amount: Double) -> String {
+    var calculatedAmount = amount
+    if amount >= 100 {
+      calculatedAmount /= 100
+      return "\(calculatedAmount) lac"
+    }
+    return "\(calculatedAmount)K"
+  }
+
   private func calcTakeHomeFor(_ income: Double) {
     let takeHomeEmployee = takeHome(income, isEmployee: true)
     let takeHomeConsultant = takeHome(income, isEmployee: false)
 
     print("\(takeHomeEmployee), \(takeHomeConsultant)")
+  }
+
+  private func ctcForTakeHomePay(_ desiredTakeHome: Double, isEmployee: Bool) -> Double {
+    var ctc: Double = 1.0
+    while takeHome(ctc, isEmployee: isEmployee) < desiredTakeHome {
+      ctc += 1
+    }
+    return ctc
+  }
+
+  private func calcCtcForTakeHome(_ desiredTakeHome: Double) {
+    let ctcEmployee = formatMoney(ctcForTakeHomePay(desiredTakeHome, isEmployee: true))
+    let ctcConsultant = formatMoney(ctcForTakeHomePay(desiredTakeHome, isEmployee: false))
+
+    print("\(ctcEmployee), \(ctcConsultant)")
   }
 
 
@@ -126,6 +150,7 @@ class MainController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     calcTakeHomeFor(lac(10))
+    calcCtcForTakeHome(50)
   }
 
 
