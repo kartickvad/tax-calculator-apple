@@ -14,6 +14,7 @@ extension Double {
     let formatter = NumberFormatter()
     formatter.locale = Locale(identifier: "en_IN")
     formatter.numberStyle = .decimal
+    formatter.maximumFractionDigits = 2
 
     return "\(formatter.string(from: NSNumber(value: self))!)"
   }
