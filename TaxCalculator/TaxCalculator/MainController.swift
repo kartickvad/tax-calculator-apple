@@ -27,6 +27,10 @@ class MainController: UIViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    togglePfRate()
+    togglePresumptiveRate()
+    toggleGstRate()
+
     print(calcCtcForTakeHome(50000))
     print(calcTakeHomeFor(1000000))
   }
@@ -47,7 +51,6 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   @IBOutlet private weak var takeHomePayTextfield: UITextField!
   @IBOutlet private weak var ctcForEmployeeTextField: UITextField!
-  @IBOutlet weak var ctcForEmployeeLabel: UILabel!
   @IBOutlet private weak var professionalTaxTextfield: UITextField! {
     didSet {
       professionalTaxTextfield.text = String(PROFESSIONAL_TAX)
@@ -55,19 +58,25 @@ class MainController: UIViewController, UITextFieldDelegate {
   }
   @IBOutlet private weak var pfRateTextField: UITextField! {
     didSet {
-      pfRateTextField.text = String(PF_RATE)
+      pfRateTextField.text = String(PF_RATE*100)
     }
   }
   @IBOutlet private weak var presumtiveTaxationRateTextField: UITextField! {
     didSet {
-      presumtiveTaxationRateTextField.text = String(PRESUMPTIVE_RATE)
+      presumtiveTaxationRateTextField.text = String(PRESUMPTIVE_RATE*100)
     }
   }
   @IBOutlet private weak var gstRateTextField: UITextField! {
     didSet {
-      gstRateTextField.text = String(GST_RATE)
+      gstRateTextField.text = String(GST_RATE*100)
     }
   }
+
+  @IBOutlet weak var ctcForEmployeeLabel: UILabel!
+  @IBOutlet weak var pfRateLabel: UILabel!
+  @IBOutlet weak var presumptiveRateLabel: UILabel!
+  @IBOutlet weak var gstRateLabel: UILabel!
+
   @IBOutlet private weak var isEmployeeSegmentedControl: UISegmentedControl!
 
 
@@ -136,6 +145,9 @@ class MainController: UIViewController, UITextFieldDelegate {
     default:
       break
     }
+    togglePfRate()
+    togglePresumptiveRate()
+    toggleGstRate()
     updateTakeHomeOrCtc()
 
   }
@@ -152,6 +164,36 @@ class MainController: UIViewController, UITextFieldDelegate {
       takeHomePayChanged(takeHomePayTextfield)
     } else {
       ctcForEmployeeChanged(ctcForEmployeeTextField)
+    }
+  }
+
+  private func togglePfRate() {
+    if isEmployee {
+      pfRateLabel.textColor = .darkText
+      pfRateTextField.isEnabled = true
+    } else {
+      pfRateLabel.textColor = .lightGray
+      pfRateTextField.isEnabled = false
+    }
+  }
+
+  private func togglePresumptiveRate() {
+    if isEmployee {
+      presumptiveRateLabel.textColor = .lightGray
+      presumtiveTaxationRateTextField.isEnabled = false
+    } else {
+      presumptiveRateLabel.textColor = .darkText
+      presumtiveTaxationRateTextField.isEnabled = true
+    }
+  }
+
+  private func toggleGstRate() {
+    if isEmployee {
+      gstRateLabel.textColor = .lightGray
+      gstRateTextField.isEnabled = false
+    } else {
+      gstRateLabel.textColor = .darkText
+      gstRateTextField.isEnabled = true
     }
   }
 
