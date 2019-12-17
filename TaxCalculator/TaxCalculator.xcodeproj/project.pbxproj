@@ -24,6 +24,7 @@
 		864EA4FB23A76D500000EEB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		864EA4FD23A76D500000EEB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		867A6BC123A792100018CB7B /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		C13311C723A85D6C00D0C086 /* Tax Calculator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tax Calculator.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +57,7 @@
 		864EA4EE23A76D4E0000EEB3 /* TaxCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				C13311C723A85D6C00D0C086 /* Tax Calculator.entitlements */,
 				864EA4EF23A76D4E0000EEB3 /* AppDelegate.swift */,
 				864EA4F323A76D4E0000EEB3 /* MainController.swift */,
 				867A6BC023A791F00018CB7B /* Extensions */,
@@ -292,7 +294,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TaxCalculator/Tax Calculator.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = E6SASKAT7G;
 				INFOPLIST_FILE = TaxCalculator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -302,8 +306,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kartickv.TaxCalculator;
 				PRODUCT_NAME = "Tax Calculator";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -311,7 +316,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TaxCalculator/Tax Calculator.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = E6SASKAT7G;
 				INFOPLIST_FILE = TaxCalculator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -321,8 +328,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kartickv.TaxCalculator;
 				PRODUCT_NAME = "Tax Calculator";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
