@@ -106,6 +106,12 @@ class MainController: UIViewController, UITextFieldDelegate {
     }
   }
 
+  @IBOutlet weak var basicSalaryPercentageTextField: UITextField! {
+    didSet {
+      basicSalaryPercentageTextField.text = String(UInt(BASIC_RATE*100))
+    }
+  }
+
   @IBOutlet private weak var ctcForEmployeeLabel: UILabel!
   @IBOutlet private weak var pfRateLabel: UILabel!
   @IBOutlet private weak var presumptiveRateLabel: UILabel!
@@ -157,6 +163,11 @@ class MainController: UIViewController, UITextFieldDelegate {
     updateTakeHomeOrCtc()
   }
 
+  @IBAction func basicSalaryPercentageChanged(_ sender: UITextField) {
+    BASIC_RATE = (Double(sender.text!)) ?? 0.0/100
+    updateTakeHomeOrCtc()
+  }
+
   @IBAction private func employeeOrConsultantSegmentChanged(_ sender: UISegmentedControl) {
     switch sender.selectedSegmentIndex {
     case 0:
@@ -166,6 +177,7 @@ class MainController: UIViewController, UITextFieldDelegate {
     default:
       break
     }
+
     togglePfRate()
     togglePresumptiveRate()
     toggleGstRate()
