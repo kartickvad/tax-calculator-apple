@@ -131,18 +131,12 @@ class MainController: UIViewController, UITextFieldDelegate {
   }
 
   @IBAction private func presumtiveTaxationRateChanged(_ sender: UITextField) {
-    guard let rate = Double(sender.text!) else {
-      return
-    }
-    PRESUMPTIVE_RATE = rate/100
+    PRESUMPTIVE_RATE = (Double(sender.text!) ?? 0.0)/100
     updateTakeHomeOrCtc()
   }
 
   @IBAction private func gstRateChanged(_ sender: UITextField) {
-    guard let gst = Double(sender.text!) else {
-      return
-    }
-    GST_RATE = gst/100
+    GST_RATE = (Double(sender.text!) ?? 0.0)/100
     updateTakeHomeOrCtc()
   }
 
