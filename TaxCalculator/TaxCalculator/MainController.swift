@@ -34,7 +34,9 @@ class MainController: UIViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    overrideUserInterfaceStyle = .light
+    if #available(iOS 13.0, *) {
+      overrideUserInterfaceStyle = .light
+    }
 
     togglePfRate()
     togglePresumptiveRate()
@@ -74,6 +76,13 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   @IBOutlet private weak var takeHomePayTextfield: UITextField!
   @IBOutlet private weak var ctcForEmployeeTextField: UITextField!
+  @IBOutlet private weak var ctcForEmployeeLabel: UILabel!
+  @IBOutlet private weak var pfRateLabel: UILabel!
+  @IBOutlet private weak var presumptiveRateLabel: UILabel!
+  @IBOutlet private weak var gstRateLabel: UILabel!
+  @IBOutlet private weak var isEmployeeSegmentedControl: UISegmentedControl!
+  @IBOutlet private weak var taxSavingInvestmentLabel: UILabel!
+  @IBOutlet private weak var optionsScrollView: UIScrollView!
 
   @IBOutlet private weak var professionalTaxTextfield: UITextField! {
     didSet {
@@ -112,13 +121,6 @@ class MainController: UIViewController, UITextFieldDelegate {
     }
   }
 
-  @IBOutlet private weak var ctcForEmployeeLabel: UILabel!
-  @IBOutlet private weak var pfRateLabel: UILabel!
-  @IBOutlet private weak var presumptiveRateLabel: UILabel!
-  @IBOutlet private weak var gstRateLabel: UILabel!
-  @IBOutlet private weak var isEmployeeSegmentedControl: UISegmentedControl!
-  @IBOutlet private weak var taxSavingInvestmentLabel: UILabel!
-  @IBOutlet private weak var optionsScrollView: UIScrollView!
   
 
 
@@ -189,7 +191,6 @@ class MainController: UIViewController, UITextFieldDelegate {
     EMPLOYEE_TAX_DEDUCTION = Double(sender.text!) ?? 0.0
     updateTakeHomeOrCtc()
   }
-
 
 
 
