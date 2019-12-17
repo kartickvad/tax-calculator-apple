@@ -102,7 +102,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   // MARK:- IBActions
 
   @IBAction private func takeHomePayChanged(_ sender: UITextField) {
-    guard let takeHomePay = Double(sender.text!) else {
+    guard let takeHomePay = Double(sender.text!.replacingOccurrences(of: ",", with: "")) else {
       ctcForEmployeeTextField.text = ""
       return
     }
@@ -112,7 +112,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   }
 
   @IBAction private func ctcForEmployeeChanged(_ sender: UITextField) {
-    guard let ctc = Double(sender.text!) else {
+    guard let ctc = Double(sender.text!.replacingOccurrences(of: ",", with: "")) else {
       takeHomePayTextfield.text = ""
       return
     }
@@ -121,7 +121,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   }
 
   @IBAction private func professionalTaxValueChanged(_ sender: UITextField) {
-    PROFESSIONAL_TAX = Double(sender.text!) ?? 0.0
+    PROFESSIONAL_TAX = Double(sender.text!.replacingOccurrences(of: ",", with: "")) ?? 0.0
     updateTakeHomeOrCtc()
   }
 
