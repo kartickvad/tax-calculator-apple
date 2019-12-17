@@ -25,6 +25,12 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   // MARK:- Lifecycle
 
+  override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    return UIDevice.current.userInterfaceIdiom == .phone
+      ? .portrait  // Our UI breaks on iPhone in landscape mode.
+      : .all  // Permit all four orientations on iPad, since mine are always in landscape.
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
