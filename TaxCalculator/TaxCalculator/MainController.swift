@@ -19,6 +19,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   var SLAB_1: Double = 250000
   var SLAB_2: Double =  500000
   var SLAB_3: Double = 1000000
+  let iPhoneXScreenHeight = 812
 
 
 
@@ -50,11 +51,23 @@ class MainController: UIViewController, UITextFieldDelegate {
                                            selector: #selector(keyboardWillHide),
                                            name: UIResponder.keyboardWillHideNotification,
                                            object: nil)
+
+    // Enable the scroll only on phones whose screensize is less than iPhone X.
+    if screenHeight < CGFloat(iPhoneXScreenHeight) {
+      optionsScrollView.isScrollEnabled = true
+      optionsScrollView.bounces = true
+      optionsScrollView.showsVerticalScrollIndicator = true
+    }
   }
 
   // Called when the user clicks on the view outside the UITextField.
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     self.view.endEditing(true)
+  }
+
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    activeField?.resignFirstResponder()
+    return true
   }
 
   override var prefersStatusBarHidden: Bool {
@@ -199,6 +212,10 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   private var isTakeHomeEnteredLast = false
   private var activeField: UITextField?
+
+  private var screenHeight: CGFloat {
+    return UIScreen.main.bounds.height
+  }
 
   @objc private func keyboardWillShow(notification: NSNotification) {
     let userInfo = notification.userInfo!
