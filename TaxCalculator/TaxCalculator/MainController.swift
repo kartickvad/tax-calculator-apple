@@ -13,7 +13,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   var PF_RATE: Double = 0.0
   var PROFESSIONAL_TAX: Double = 2500
   var PRESUMPTIVE_RATE: Double = 0.5
-  var EMPLOYEE_TAX_DEDUCTION: Double = 16000
+  var EMPLOYEE_TAX_DEDUCTION: Double = 160000
   var GST_RATE: Double = 0
   var SLAB_1: Double = 250000
   var SLAB_2: Double =  500000
@@ -102,7 +102,7 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   @IBAction private func takeHomePayChanged(_ sender: UITextField) {
     guard let takeHomePay = Double(sender.text!) else {
-      ctcForEmployeeTextField.text = "0.0"
+      ctcForEmployeeTextField.text = ""
       return
     }
     isTakeHomeEnteredLast = true
@@ -112,7 +112,7 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   @IBAction private func ctcForEmployeeChanged(_ sender: UITextField) {
     guard let ctc = Double(sender.text!) else {
-      takeHomePayTextfield.text = "0"
+      takeHomePayTextfield.text = ""
       return
     }
     isTakeHomeEnteredLast = false
@@ -156,7 +156,7 @@ class MainController: UIViewController, UITextFieldDelegate {
     case 0:
       ctcForEmployeeLabel.text = "CTC for employee"
     case 1:
-      ctcForEmployeeLabel.text = "Gross income for consultant"
+      ctcForEmployeeLabel.text = "Gross income for freelancer"
     default:
       break
     }
@@ -328,7 +328,7 @@ class MainController: UIViewController, UITextFieldDelegate {
     let pf = isEmployee ? pfFor(income) : 0.0
     let calculatedIncome = income - tax - pf
 
-    // round to the nearest thousand
+    // Round to the nearest rupee:
     return floor(calculatedIncome / 12)
   }
 

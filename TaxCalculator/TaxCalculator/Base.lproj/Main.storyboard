@@ -146,7 +146,7 @@
                                                 </constraints>
                                                 <segments>
                                                     <segment title="Employee"/>
-                                                    <segment title="Consultant"/>
+                                                    <segment title="Freelancer"/>
                                                 </segments>
                                                 <connections>
                                                     <action selector="employeeOrConsultantSegmentChanged:" destination="DId-15-aJ9" eventType="valueChanged" id="vX7-EU-VTb"/>
