@@ -11,6 +11,7 @@ import UIKit
 class MainController: UIViewController, UITextFieldDelegate {
 
   var PF_RATE: Double = 0.0
+  var BASIC_RATE: Double = 0.4  // 40% of salary is considered basic.
   var PROFESSIONAL_TAX: Double = 2500
   var PRESUMPTIVE_RATE: Double = 0.5
   var EMPLOYEE_TAX_DEDUCTION: Double = 160000
@@ -309,7 +310,7 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   private func pfFor(_ income: Double) -> Double {
     // To calculate PF, your salary is capped at 15k
-    return min(income, 15000) * PF_RATE
+    return min(income, 15000) * BASIC_RATE * PF_RATE
   }
 
   private func takeHome(_ income: Double, isEmployee: Bool) -> Double {
