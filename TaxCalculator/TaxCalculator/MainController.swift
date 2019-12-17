@@ -121,10 +121,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   }
 
   @IBAction private func professionalTaxValueChanged(_ sender: UITextField) {
-    guard let tax = Double(sender.text!) else {
-      return
-    }
-    PROFESSIONAL_TAX = tax
+    PROFESSIONAL_TAX = Double(sender.text!) ?? 0.0
     updateTakeHomeOrCtc()
   }
 
