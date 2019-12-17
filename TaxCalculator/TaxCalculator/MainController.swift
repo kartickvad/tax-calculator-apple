@@ -74,25 +74,35 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   @IBOutlet private weak var takeHomePayTextfield: UITextField!
   @IBOutlet private weak var ctcForEmployeeTextField: UITextField!
+
   @IBOutlet private weak var professionalTaxTextfield: UITextField! {
     didSet {
       professionalTaxTextfield.text = String(UInt(PROFESSIONAL_TAX))
     }
   }
+
   @IBOutlet private weak var pfRateTextField: UITextField! {
     didSet {
       pfRateTextField.text = String(UInt(PF_RATE*100))
     }
   }
+
   @IBOutlet private weak var presumtiveTaxationRateTextField: UITextField! {
     didSet {
       // The UInt() causes it to show as 50 rather than 50.0:
       presumtiveTaxationRateTextField.text = String(UInt(PRESUMPTIVE_RATE*100))
     }
   }
+
   @IBOutlet private weak var gstRateTextField: UITextField! {
     didSet {
       gstRateTextField.text = String(UInt(GST_RATE*100))
+    }
+  }
+
+  @IBOutlet weak var taxSavinInvestmentTextField: UITextField! {
+    didSet {
+      taxSavinInvestmentTextField.text = String(UInt(EMPLOYEE_TAX_DEDUCTION))
     }
   }
 
@@ -101,7 +111,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   @IBOutlet private weak var presumptiveRateLabel: UILabel!
   @IBOutlet private weak var gstRateLabel: UILabel!
   @IBOutlet private weak var isEmployeeSegmentedControl: UISegmentedControl!
-
+  @IBOutlet private weak var taxSavingInvestmentLabel: UILabel!
   @IBOutlet private weak var optionsScrollView: UIScrollView!
   
 
@@ -160,8 +170,15 @@ class MainController: UIViewController, UITextFieldDelegate {
     togglePresumptiveRate()
     toggleGstRate()
     updateTakeHomeOrCtc()
-
+    toggleTaxSavingInvestments()
   }
+
+  @IBAction func taxSavinInvestmentChanged(_ sender: UITextField) {
+    EMPLOYEE_TAX_DEDUCTION = Double(sender.text!) ?? 0.0
+    updateTakeHomeOrCtc()
+  }
+
+
 
 
 
@@ -237,6 +254,15 @@ class MainController: UIViewController, UITextFieldDelegate {
     }
   }
 
+  private func toggleTaxSavingInvestments() {
+    if isEmployee {
+      taxSavingInvestmentLabel.textColor = .darkText
+      taxSavinInvestmentTextField.isEnabled = true
+    } else {
+      taxSavingInvestmentLabel.textColor = .lightGray
+      taxSavinInvestmentTextField.isEnabled = false
+    }
+  }
 
   private var isEmployee: Bool {
     return isEmployeeSegmentedControl.selectedSegmentIndex == 0
