@@ -126,10 +126,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   }
 
   @IBAction private func pfRateChanged(_ sender: UITextField) {
-    guard let rate = Double(sender.text!) else {
-      return
-    }
-    PF_RATE = rate/100
+    PF_RATE = (Double(sender.text!) ?? 0.0)/100
     updateTakeHomeOrCtc()
   }
 
