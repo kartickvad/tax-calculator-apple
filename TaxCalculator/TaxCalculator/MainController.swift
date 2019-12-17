@@ -69,22 +69,23 @@ class MainController: UIViewController, UITextFieldDelegate {
   @IBOutlet private weak var ctcForEmployeeTextField: UITextField!
   @IBOutlet private weak var professionalTaxTextfield: UITextField! {
     didSet {
-      professionalTaxTextfield.text = String(PROFESSIONAL_TAX)
+      professionalTaxTextfield.text = String(UInt(PROFESSIONAL_TAX))
     }
   }
   @IBOutlet private weak var pfRateTextField: UITextField! {
     didSet {
-      pfRateTextField.text = String(PF_RATE*100)
+      pfRateTextField.text = String(UInt(PF_RATE*100))
     }
   }
   @IBOutlet private weak var presumtiveTaxationRateTextField: UITextField! {
     didSet {
-      presumtiveTaxationRateTextField.text = String(PRESUMPTIVE_RATE*100)
+      // The UInt() causes it to show as 50 rather than 50.0:
+      presumtiveTaxationRateTextField.text = String(UInt(PRESUMPTIVE_RATE*100))
     }
   }
   @IBOutlet private weak var gstRateTextField: UITextField! {
     didSet {
-      gstRateTextField.text = String(GST_RATE*100)
+      gstRateTextField.text = String(UInt(GST_RATE*100))
     }
   }
 
