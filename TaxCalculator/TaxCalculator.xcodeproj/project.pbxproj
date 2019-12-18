@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19017E2023AA172D00B179D7 /* UIScrollView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19017E1F23AA172D00B179D7 /* UIScrollView+Util.swift */; };
+		19017E2023AA172D00B179D7 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19017E1F23AA172D00B179D7 /* UIView+Extensions.swift */; };
 		864EA4F023A76D4E0000EEB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864EA4EF23A76D4E0000EEB3 /* AppDelegate.swift */; };
 		864EA4F423A76D4E0000EEB3 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864EA4F323A76D4E0000EEB3 /* MainController.swift */; };
 		864EA4F723A76D4E0000EEB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 864EA4F523A76D4E0000EEB3 /* Main.storyboard */; };
@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		19017E1F23AA172D00B179D7 /* UIScrollView+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Util.swift"; sourceTree = "<group>"; };
+		19017E1F23AA172D00B179D7 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		864EA4EC23A76D4E0000EEB3 /* Tax Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tax Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		864EA4EF23A76D4E0000EEB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		864EA4F323A76D4E0000EEB3 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				867A6BC123A792100018CB7B /* Double+Extensions.swift */,
-				19017E1F23AA172D00B179D7 /* UIScrollView+Util.swift */,
+				19017E1F23AA172D00B179D7 /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -154,7 +154,7 @@
 				867A6BC223A792100018CB7B /* Double+Extensions.swift in Sources */,
 				864EA4F423A76D4E0000EEB3 /* MainController.swift in Sources */,
 				864EA4F023A76D4E0000EEB3 /* AppDelegate.swift in Sources */,
-				19017E2023AA172D00B179D7 /* UIScrollView+Util.swift in Sources */,
+				19017E2023AA172D00B179D7 /* UIView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

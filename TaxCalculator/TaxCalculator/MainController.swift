@@ -43,21 +43,21 @@ class MainController: UIViewController, UITextFieldDelegate {
     togglePresumptiveRate()
     toggleGstRate()
 
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(keyboardWillShow),
-                                           name: UIResponder.keyboardWillShowNotification,
-                                           object: nil)
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(keyboardWillHide),
-                                           name: UIResponder.keyboardWillHideNotification,
-                                           object: nil)
-
     // Enable the scroll only on phones whose screensize is less than iPhone X.
     if screenHeight < CGFloat(iPhoneXScreenHeight) {
       optionsScrollView.isScrollEnabled = true
       optionsScrollView.bounces = true
       optionsScrollView.showsVerticalScrollIndicator = true
     }
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    keyboardWillShow(optionsScrollView)
+    keyboardWillHide(optionsScrollView)
+  }
+
+  override func viewWillDisappear(_ animated: Bool) {
+    removeKeyboardObservers()
   }
 
   // Called when the user clicks on the view outside the UITextField.
