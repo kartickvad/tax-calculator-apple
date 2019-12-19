@@ -340,14 +340,10 @@ class MainController: UIViewController, UITextFieldDelegate {
     }
 
     let tax = incomeTaxSlab1(income) + incomeTaxSlab2(income) + incomeTaxSlab3(income)
-    let cess = tax * 0.04 // Health and education cess is 4% of the tax
     var surcharge: Double = 0.0
-    if income >=  10000000 { // 100L
-      print("Warning: ignoring surcharge for high income")
-    }
-    if income >=  5000000 { // 50L
-      surcharge = tax * 0.1
-    }
+    if income >=  10000000 { print("Warning: ignoring surcharge for high income") } // 100L
+    if income >=  5000000 { surcharge = tax * 0.1 } // 50L
+    let cess = (tax + surcharge) * 0.04 // Health and education cess is 4% of the tax
     return tax + cess + surcharge
   }
 
