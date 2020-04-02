@@ -16,12 +16,9 @@ class MainController: UIViewController, UITextFieldDelegate {
   var PRESUMPTIVE_RATE: Double = 0.5
   var EMPLOYEE_TAX_DEDUCTION: Double = 160000
   var GST_RATE: Double = 0
-  var SLAB_1: Double =  250000
+  var SLAB_1: Double = 250000
   var SLAB_2: Double =  500000
-  var SLAB_3: Double =  750000
-  var SLAB_4: Double = 1000000
-  var SLAB_5: Double = 1250000
-  var SLAB_6: Double = 1500000
+  var SLAB_3: Double = 1000000
   let iPhoneXScreenHeight = 812
 
 
@@ -324,7 +321,7 @@ class MainController: UIViewController, UITextFieldDelegate {
     }
     calculatedIncome -= SLAB_2
 
-    return calculatedIncome * 0.1 // 10% tax rate for this slab
+    return calculatedIncome * 0.2 // 20% tax rate for this slab
   }
 
   private func incomeTaxSlab3(_ income: Double) -> Double {
@@ -332,46 +329,7 @@ class MainController: UIViewController, UITextFieldDelegate {
     if income <= SLAB_3 {
       return 0
     }
-    if income > SLAB_4 {
-      calculatedIncome = SLAB_4
-    }
     calculatedIncome -= SLAB_3
-
-    return calculatedIncome * 0.15 // 15% tax rate for this slab
-  }
-  
-  private func incomeTaxSlab4(_ income: Double) -> Double {
-    var calculatedIncome = income
-    if income <= SLAB_4 {
-      return 0
-    }
-    if income > SLAB_5 {
-      calculatedIncome = SLAB_5
-    }
-    calculatedIncome -= SLAB_4
-
-    return calculatedIncome * 0.2 // 20% tax rate for this slab
-  }
-  
-  private func incomeTaxSlab5(_ income: Double) -> Double {
-    var calculatedIncome = income
-    if income <= SLAB_5 {
-      return 0
-    }
-    if income > SLAB_6 {
-      calculatedIncome = SLAB_6
-    }
-    calculatedIncome -= SLAB_5
-
-    return calculatedIncome * 0.25 // 25% tax rate for this slab
-  }
-  
-  private func incomeTaxSlab6(_ income: Double) -> Double {
-    var calculatedIncome = income
-    if income <= SLAB_6 {
-      return 0
-    }
-    calculatedIncome -= SLAB_6
 
     return calculatedIncome * 0.3 // 30% tax rate for this slab
   }
