@@ -222,7 +222,7 @@ class MainController: UIViewController, UITextFieldDelegate {
     self.optionsScrollView.scrollIndicatorInsets = contentInsets
 
     var aRect : CGRect = self.view.frame
-    aRect.size.height -= keyboardSize!.height
+    aRect.height -= keyboardSize!.height
     if activeField != nil {
       if (!aRect.contains(activeField!.frame.origin)) {
         self.optionsScrollView.scrollRectToVisible(activeField!.frame, animated: true)

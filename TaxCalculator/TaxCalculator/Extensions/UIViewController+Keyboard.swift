@@ -18,8 +18,8 @@ extension UIViewController {
                     let keyboardRectNew = self.view.convert(keyboardRect, to: self.view)
                     let scrollViewSpace = scrollView.frame.origin.y + scrollView.contentOffset.y
                     let textFieldRect:CGRect = firstResponder.convert(firstResponder.bounds, to: self.view)
-                    let textFieldSpace = textFieldRect.origin.y + textFieldRect.size.height
-                    let remainingSpace = self.view.frame.size.height - keyboardRectNew.size.height
+                    let textFieldSpace = textFieldRect.origin.y + textFieldRect.height
+                    let remainingSpace = self.view.frame.height - keyboardRectNew.height
                     let gap = scrollViewSpace + textFieldSpace - remainingSpace
 
                     if gap > 0 {
