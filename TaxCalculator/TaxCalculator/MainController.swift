@@ -52,8 +52,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   }
 
   override func viewWillAppear(_ animated: Bool) {
-    keyboardWillShow(optionsScrollView)
-    keyboardWillHide(optionsScrollView)
+    registerForKeyboardNotifications(optionsScrollView)
   }
 
   // Called when the user clicks on the view outside the UITextField.
