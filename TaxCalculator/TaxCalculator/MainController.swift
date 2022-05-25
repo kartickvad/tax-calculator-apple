@@ -57,7 +57,7 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   // Called when the user clicks on the view outside the UITextField.
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    self.view.endEditing(true)
+    view.endEditing(true)
   }
 
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -214,18 +214,18 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   @objc private func keyboardWillShow(notification: NSNotification) {
     let userInfo = notification.userInfo!
-    self.optionsScrollView.isScrollEnabled = true
+    optionsScrollView.isScrollEnabled = true
     let keyboardSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
     let contentInsets : UIEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize!.height + 50, right: 0.0)
 
-    self.optionsScrollView.contentInset = contentInsets
-    self.optionsScrollView.scrollIndicatorInsets = contentInsets
+    optionsScrollView.contentInset = contentInsets
+    optionsScrollView.scrollIndicatorInsets = contentInsets
 
-    var aRect : CGRect = self.view.frame
+    var aRect : CGRect = view.frame
     aRect.height -= keyboardSize!.height
     if activeField != nil {
       if (!aRect.contains(activeField!.frame.origin)) {
-        self.optionsScrollView.scrollRectToVisible(activeField!.frame, animated: true)
+        optionsScrollView.scrollRectToVisible(activeField!.frame, animated: true)
       }
     }
   }
@@ -235,10 +235,10 @@ class MainController: UIViewController, UITextFieldDelegate {
     let userInfo = notification.userInfo!
     let keyboardSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
     let contentInsets : UIEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: -keyboardSize!.height, right: 0.0)
-    self.optionsScrollView.contentInset = contentInsets
-    self.optionsScrollView.scrollIndicatorInsets = contentInsets
-    self.view.endEditing(true)
-    self.optionsScrollView.isScrollEnabled = false
+    optionsScrollView.contentInset = contentInsets
+    optionsScrollView.scrollIndicatorInsets = contentInsets
+    view.endEditing(true)
+    optionsScrollView.isScrollEnabled = false
   }
 
   private func updateTakeHomeOrCtc() {

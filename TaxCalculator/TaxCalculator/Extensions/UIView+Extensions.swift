@@ -19,8 +19,8 @@ class DismissableScrollView: UIScrollView {
 extension UIView {
 
   var firstResponder -> UIView? {
-    if self.isFirstResponder { return self }
-    for subview: UIView in self.subviews {
+    if isFirstResponder { return self }
+    for subview in subviews {
       let firstResponder = subview.firstResponder
       if nil != firstResponder {
         return firstResponder
