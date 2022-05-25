@@ -56,10 +56,6 @@ class MainController: UIViewController, UITextFieldDelegate {
     keyboardWillHide(optionsScrollView)
   }
 
-  override func viewWillDisappear(_ animated: Bool) {
-    removeKeyboardObservers()
-  }
-
   // Called when the user clicks on the view outside the UITextField.
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     self.view.endEditing(true)
