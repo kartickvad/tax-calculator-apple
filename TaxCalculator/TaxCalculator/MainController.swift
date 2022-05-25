@@ -9,10 +9,23 @@
 import UIKit
 
 class MainController: UIViewController, UITextFieldDelegate {
+  /// Assuming we're not subject to PF.
+  fileprivate var pfRate: Double = 0.0
 
+  /// 40% of salary is considered basic.
+  fileprivate var basicRate: Double = 0.4
 
+  /// For Karnataka.
+  fileprivate var professionalTax: Double = 2500
 
+  /// Assuming you're availaing of presumptive taxation under section 44AD(A).
+  fileprivate var professionalTax: Double = 0.5
 
+  /// Employees (not consultants) are eligible for this.
+  fileprivate var employeeTaxDeduction: Double = 160000 
+
+  /// Assuming GST is not applicable.
+  fileprivate var gstRate: Double = 0
 
   // MARK:- Lifecycle
 
@@ -84,38 +97,38 @@ class MainController: UIViewController, UITextFieldDelegate {
 
   @IBOutlet private weak var professionalTaxTextfield: UITextField! {
     didSet {
-      professionalTaxTextfield.text = String(UInt(PROFESSIONAL_TAX))
+      professionalTaxTextfield.text = String(UInt(professionalTax))
     }
   }
 
   @IBOutlet private weak var pfRateTextField: UITextField! {
     didSet {
-      pfRateTextField.text = String(UInt(PF_RATE*100))
+      pfRateTextField.text = String(UInt(pfRate*100))
     }
   }
 
   @IBOutlet private weak var presumtiveTaxationRateTextField: UITextField! {
     didSet {
       // The UInt() causes it to show as 50 rather than 50.0:
-      presumtiveTaxationRateTextField.text = String(UInt(PRESUMPTIVE_RATE*100))
+      presumtiveTaxationRateTextField.text = String(UInt(professionalTax*100))
     }
   }
 
   @IBOutlet private weak var gstRateTextField: UITextField! {
     didSet {
-      gstRateTextField.text = String(UInt(GST_RATE*100))
+      gstRateTextField.text = String(UInt(gstRate*100))
     }
   }
 
   @IBOutlet weak var taxSavinInvestmentTextField: UITextField! {
     didSet {
-      taxSavinInvestmentTextField.text = String(UInt(EMPLOYEE_TAX_DEDUCTION))
+      taxSavinInvestmentTextField.text = String(UInt(employeeTaxDeduction))
     }
   }
 
   @IBOutlet weak var basicSalaryPercentageTextField: UITextField! {
     didSet {
-      basicSalaryPercentageTextField.text = String(UInt(BASIC_RATE*100))
+      basicSalaryPercentageTextField.text = String(UInt(basicRate*100))
     }
   }
 
@@ -125,7 +138,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   // MARK:- IBActions
 
   @IBAction private func takeHomePayChanged(_ sender: UITextField) {
-    guard let takeHomePay = Double(sender.text!.replacingOccurrences(of: ",", with: "")) else {
+    guard let takeHomePay = sender.number else {
       ctcForEmployeeTextField.text = ""
       return
     }
@@ -135,7 +148,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   }
 
   @IBAction private func ctcForEmployeeChanged(_ sender: UITextField) {
-    guard let ctc = Double(sender.text!.replacingOccurrences(of: ",", with: "")) else {
+    guard let ctc = sender.number else {
       takeHomePayTextfield.text = ""
       return
     }
@@ -144,27 +157,27 @@ class MainController: UIViewController, UITextFieldDelegate {
   }
 
   @IBAction private func professionalTaxValueChanged(_ sender: UITextField) {
-    PROFESSIONAL_TAX = Double(sender.text!.replacingOccurrences(of: ",", with: "")) ?? 0.0
+    professionalTax = sender.number ?? 0.0
     updateTakeHomeOrCtc()
   }
 
   @IBAction private func pfRateChanged(_ sender: UITextField) {
-    PF_RATE = (Double(sender.text!) ?? 0.0)/100
+    pfRate = (Double(sender.text!) ?? 0.0)/100
     updateTakeHomeOrCtc()
   }
 
   @IBAction private func presumtiveTaxationRateChanged(_ sender: UITextField) {
-    PRESUMPTIVE_RATE = (Double(sender.text!) ?? 0.0)/100
+    professionalTax = (Double(sender.text!) ?? 0.0)/100
     updateTakeHomeOrCtc()
   }
 
   @IBAction private func gstRateChanged(_ sender: UITextField) {
-    GST_RATE = (Double(sender.text!) ?? 0.0)/100
+    gstRate = (Double(sender.text!) ?? 0.0)/100
     updateTakeHomeOrCtc()
   }
 
   @IBAction func basicSalaryPercentageChanged(_ sender: UITextField) {
-    BASIC_RATE = (Double(sender.text!)) ?? 0.0/100
+    basicRate = (Double(sender.text!)) ?? 0.0/100
     updateTakeHomeOrCtc()
   }
 
@@ -187,7 +200,7 @@ class MainController: UIViewController, UITextFieldDelegate {
   }
 
   @IBAction func taxSavinInvestmentChanged(_ sender: UITextField) {
-    EMPLOYEE_TAX_DEDUCTION = Double(sender.text!) ?? 0.0
+    employeeTaxDeduction = Double(sender.text!) ?? 0.0
     updateTakeHomeOrCtc()
   }
 
@@ -334,27 +347,27 @@ class MainController: UIViewController, UITextFieldDelegate {
   }
 
   private func incomeAndProfessionalTaxFor(_ income: Double) -> Double {
-    return incomeTaxFor(income) + PROFESSIONAL_TAX
+    return incomeTaxFor(income) + professionalTax
   }
 
   private func totalTaxFor(_ income: Double, isEmployee: Bool) -> Double {
     if isEmployee {
-      return incomeAndProfessionalTaxFor(income - EMPLOYEE_TAX_DEDUCTION)
+      return incomeAndProfessionalTaxFor(income - employeeTaxDeduction)
     }
 
-    let effectiveGSTRate = GST_RATE / (1 + GST_RATE)
+    // Assuming the consultant is bearing GST. If the client is bearing it, as is typical,
+    // change this to:
+    // let effectiveGSTRate = gstRate
+    let effectiveGSTRate = gstRate / (1 + gstRate)
 
     let gst = income * effectiveGSTRate
-
-    let calculatedIncome = income * PRESUMPTIVE_RATE
-
+    let calculatedIncome = income * professionalTax
     return incomeAndProfessionalTaxFor(calculatedIncome) + gst
-
   }
 
   private func pfFor(_ income: Double) -> Double {
     // To calculate PF, your salary is capped at 15k
-    return min(income, 15000) * BASIC_RATE * PF_RATE
+    return min(income, 15_000) * basicRate * pfRate
   }
 
   private func takeHome(_ income: Double, isEmployee: Bool) -> Double {
@@ -387,24 +400,8 @@ class MainController: UIViewController, UITextFieldDelegate {
     return ctcForTakeHomePay(desiredTakeHome, isEmployee: isEmployee)
   }
 }
- 
-/// Assuming we're not subject to PF.
-fileprivate let PF_RATE: Double = 0.0
 
-/// 40% of salary is considered basic.
-fileprivate let BASIC_RATE: Double = 0.4
-
-/// For Karnataka.
-fileprivate let PROFESSIONAL_TAX: Double = 2500
-
-/// Assuming you're availaing of presumptive taxation under section 44AD(A).
-fileprivate let PRESUMPTIVE_RATE: Double = 0.5
-
-/// Employees (not consultants) are eligible for this.
-fileprivate let EMPLOYEE_TAX_DEDUCTION: Double = 160000 
-
-/// Assuming GST is not applicable.
-fileprivate let GST_RATE: Double = 0
+// The income tax slabs:
 
 fileprivate let SLAB_1: Double = 250_000
 fileprivate let SLAB_2: Double = 500_000
