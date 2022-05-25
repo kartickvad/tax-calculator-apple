@@ -10,16 +10,6 @@ import UIKit
 
 class MainController: UIViewController, UITextFieldDelegate {
 
-  var PF_RATE: Double = 0.0
-  var BASIC_RATE: Double = 0.4  // 40% of salary is considered basic.
-  var PROFESSIONAL_TAX: Double = 2500
-  var PRESUMPTIVE_RATE: Double = 0.5
-  var EMPLOYEE_TAX_DEDUCTION: Double = 160000
-  var GST_RATE: Double = 0
-  var SLAB_1: Double = 250000
-  var SLAB_2: Double =  500000
-  var SLAB_3: Double = 1000000
-  let iPhoneXScreenHeight = 812
 
 
 
@@ -39,9 +29,9 @@ class MainController: UIViewController, UITextFieldDelegate {
       overrideUserInterfaceStyle = .light
     }
 
-    togglePfRate()
-    togglePresumptiveRate()
-    toggleGstRate()
+    updatePfRate()
+    updatePresumptiveRate()
+    updateGstRate()
 
     // Enable the scroll only on phones whose screensize is less than iPhone X.
     if screenHeight < CGFloat(iPhoneXScreenHeight) {
@@ -185,14 +175,15 @@ class MainController: UIViewController, UITextFieldDelegate {
     case 1:
       ctcForEmployeeLabel.text = "Gross income for freelancer"
     default:
+      fatalError("Unexpected segmented control selection")
       break
     }
 
-    togglePfRate()
-    togglePresumptiveRate()
-    toggleGstRate()
+    updatePfRate()
+    updatePresumptiveRate()
+    updateGstRate()
     updateTakeHomeOrCtc()
-    toggleTaxSavingInvestments()
+    updateTaxSavingInvestments()
   }
 
   @IBAction func taxSavinInvestmentChanged(_ sender: UITextField) {
@@ -249,7 +240,7 @@ class MainController: UIViewController, UITextFieldDelegate {
     }
   }
 
-  private func togglePfRate() {
+  private func updatePfRate() {
     if isEmployee {
       pfRateLabel.textColor = .darkText
       pfRateTextField.isEnabled = true
@@ -259,7 +250,7 @@ class MainController: UIViewController, UITextFieldDelegate {
     }
   }
 
-  private func togglePresumptiveRate() {
+  private func updatePresumptiveRate() {
     if isEmployee {
       presumptiveRateLabel.textColor = .lightGray
       presumtiveTaxationRateTextField.isEnabled = false
@@ -269,7 +260,7 @@ class MainController: UIViewController, UITextFieldDelegate {
     }
   }
 
-  private func toggleGstRate() {
+  private func updateGstRate() {
     if isEmployee {
       gstRateLabel.textColor = .lightGray
       gstRateTextField.isEnabled = false
@@ -279,7 +270,7 @@ class MainController: UIViewController, UITextFieldDelegate {
     }
   }
 
-  private func toggleTaxSavingInvestments() {
+  private func updateTaxSavingInvestments() {
     if isEmployee {
       taxSavingInvestmentLabel.textColor = .darkText
       taxSavinInvestmentTextField.isEnabled = true
@@ -396,4 +387,29 @@ class MainController: UIViewController, UITextFieldDelegate {
     return ctcForTakeHomePay(desiredTakeHome, isEmployee: isEmployee)
   }
 }
+ 
+/// Assuming we're not subject to PF.
+fileprivate let PF_RATE: Double = 0.0
 
+/// 40% of salary is considered basic.
+fileprivate let BASIC_RATE: Double = 0.4
+
+/// For Karnataka.
+fileprivate let PROFESSIONAL_TAX: Double = 2500
+
+/// Assuming you're availaing of presumptive taxation under section 44AD(A).
+fileprivate let PRESUMPTIVE_RATE: Double = 0.5
+
+/// Employees (not consultants) are eligible for this.
+fileprivate let EMPLOYEE_TAX_DEDUCTION: Double = 160000 
+
+/// Assuming GST is not applicable.
+fileprivate let GST_RATE: Double = 0
+
+fileprivate let SLAB_1: Double = 250_000
+fileprivate let SLAB_2: Double = 500_000
+fileprivate let SLAB_3: Double = 1000_000
+
+/// TODO: Instead calculate the height of the UI and compare it to the screen height to enable
+/// scrolling.
+fileprivate let iPhoneXScreenHeight = 812
